@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>Klypse Features</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Klypse — Features</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" href="images/logo.png">
 
 </head>
 
@@ -13,114 +19,456 @@
 <body>
 
 
-<header>
+<!-- =========================
+     LOADING SCREEN
+========================= -->
 
-<div class="logo-area">
+<div id="loader">
 
-<img src="images/logo.png">
+    <div class="loader-logo-wrap">
+        <img src="images/logo.png" alt="Klypse">
+    </div>
 
-<span>Klypse</span>
+    <h1>KLYPSE</h1>
+
+    <p>LOADING FEATURES</p>
+
+    <div class="loading-bar">
+
+        <div class="loading-progress"></div>
+
+    </div>
 
 </div>
 
 
-<nav>
 
-<a href="index.html">Home</a>
+<!-- =========================
+     ANIMATED BACKGROUND
+========================= -->
 
-<a href="features.html">Features</a>
+<div class="background">
 
-<a href="updates.html">Updates</a>
+    <div class="grid"></div>
 
-<a href="download.html">Download</a>
+    <div class="glow glow-one"></div>
 
-<a href="https://discord.gg/SguyC9JuPD">
-Discord
-</a>
+    <div class="glow glow-two"></div>
 
-</nav>
+    <div class="scanlines"></div>
+
+</div>
+
+
+
+<!-- =========================
+     CUSTOM CURSOR
+========================= -->
+
+<div class="cursor-dot"></div>
+
+<div class="cursor-ring"></div>
+
+
+
+<!-- =========================
+     MUSIC PLAYER
+========================= -->
+
+<div class="music-player">
+
+    <div class="music-info">
+
+        <div class="music-disc">
+
+            <img src="images/logo.png" alt="Klypse">
+
+        </div>
+
+        <div class="music-text">
+
+            <strong id="songTitle">
+                Klypse Radio
+            </strong>
+
+            <span id="songStatus">
+                Ready
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="music-controls">
+
+        <button id="previousSong" title="Previous">
+            ⏮
+        </button>
+
+        <button id="playPause" title="Play / Pause">
+            ▶
+        </button>
+
+        <button id="nextSong" title="Next">
+            ⏭
+        </button>
+
+        <button id="muteButton" title="Mute">
+            🔊
+        </button>
+
+    </div>
+
+
+    <input
+        id="volumeSlider"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.35"
+    >
+
+</div>
+
+
+<audio id="backgroundMusic"></audio>
+
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header>
+
+    <div class="logo-area">
+
+        <img src="images/logo.png" alt="Klypse">
+
+        <span>Klypse</span>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="features.html" class="active">
+            Features
+        </a>
+
+        <a href="updates.html">
+            Updates
+        </a>
+
+        <a
+            href="https://discord.gg/SguyC9JuPD"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Discord
+        </a>
+
+    </nav>
 
 </header>
 
 
 
+<!-- =========================
+     FEATURES
+========================= -->
+
+<main>
+
+
 <section class="hero">
 
+    <div class="hero-badge">
+        KLYPSE // FEATURES
+    </div>
 
-<h1>FEATURES</h1>
+
+    <img
+        class="big-logo"
+        src="images/logo.png"
+        alt="Klypse Logo"
+    >
 
 
-<p>
-Everything built into Klypse.
-</p>
+    <h1>
+        FEATURES
+    </h1>
 
+
+    <p class="hero-subtitle">
+
+        Built with
+        <span>performance</span>
+        in mind.
+
+    </p>
+
+
+    <div class="scroll-indicator">
+
+        <span></span>
+
+        Explore features
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FEATURE CARDS
+========================= -->
+
+<section class="content-section reveal">
+
+    <div class="section-label">
+        01 / CORE
+    </div>
+
+
+    <h2>
+        Built for <span>performance.</span>
+    </h2>
+
+
+    <p class="section-description">
+
+        Klypse is designed around a clean,
+        lightweight experience without
+        unnecessary clutter.
+
+    </p>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="card-number">
+                01
+            </div>
+
+            <div class="card-icon">
+                ◈
+            </div>
+
+            <h3>
+                Performance
+            </h3>
+
+            <p>
+                A lightweight experience
+                focused on keeping everything
+                fast and responsive.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-number">
+                02
+            </div>
+
+            <div class="card-icon">
+                ◇
+            </div>
+
+            <h3>
+                Optimization
+            </h3>
+
+            <p>
+                Carefully designed systems
+                focused on efficiency and
+                consistency.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-number">
+                03
+            </div>
+
+            <div class="card-icon">
+                ◆
+            </div>
+
+            <h3>
+                Customization
+            </h3>
+
+            <p>
+                Configure your experience
+                around the way you want
+                Klypse to feel.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-number">
+                04
+            </div>
+
+            <div class="card-icon">
+                ◉
+            </div>
+
+            <h3>
+                Interface
+            </h3>
+
+            <p>
+                A modern interface designed
+                to keep important information
+                easy to find.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-number">
+                05
+            </div>
+
+            <div class="card-icon">
+                ⟡
+            </div>
+
+            <h3>
+                Updates
+            </h3>
+
+            <p>
+                Continuous improvements and
+                new features as Klypse evolves.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-number">
+                06
+            </div>
+
+            <div class="card-icon">
+                ◎
+            </div>
+
+            <h3>
+                Reliability
+            </h3>
+
+            <p>
+                Built with consistency and
+                stability as important parts
+                of the experience.
+            </p>
+
+        </div>
+
+
+    </div>
 
 </section>
 
 
 
+<!-- =========================
+     COMMUNITY
+========================= -->
 
-<section>
+<section class="discord-section reveal">
 
+    <div class="discord-panel">
 
-<div class="cards">
+        <div>
 
+            <span class="section-label">
+                02 / COMMUNITY
+            </span>
 
-<div class="card">
+            <h2>
+                More is <span>coming.</span>
+            </h2>
 
-<h3>⚡ Speed</h3>
+            <p>
+                Follow development and stay
+                up to date with new Klypse
+                features and releases.
+            </p>
 
-<p>
-Optimized performance.
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>🎨 Customization</h3>
-
-<p>
-Personalize your experience.
-</p>
-
-</div>
+        </div>
 
 
+        <a
+            href="https://discord.gg/SguyC9JuPD"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="discord-large"
+        >
+            Join Discord →
+        </a>
 
-<div class="card">
-
-<h3>🛡 Stability</h3>
-
-<p>
-Reliable software.
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>◈ Modern UI</h3>
-
-<p>
-Premium interface design.
-</p>
-
-</div>
-
-
-</div>
-
+    </div>
 
 </section>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <img src="images/logo.png" alt="Klypse">
+
+    <h3>
+        Klypse
+    </h3>
+
+    <p>
+        © 2026 Klypse. All rights reserved.
+    </p>
+
+</footer>
+
 
 
 <script src="script.js"></script>
-
 
 </body>
 
