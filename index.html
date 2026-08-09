@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>Klypse</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="icon" href="images/logo.png">
+    <title>Klypse</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" href="images/logo.png">
 
 </head>
 
@@ -15,217 +19,468 @@
 <body>
 
 
+<!-- =========================
+     LOADING SCREEN
+========================= -->
+
 <div id="loader">
 
-<img src="images/logo.png">
+    <div class="loader-logo-wrap">
 
-<h1>KLYPSE</h1>
+        <img src="images/logo.png" alt="Klypse">
 
-<div class="loading-bar"></div>
+    </div>
+
+    <h1>KLYPSE</h1>
+
+    <p>INITIALIZING EXPERIENCE</p>
+
+    <div class="loading-bar">
+
+        <div class="loading-progress"></div>
+
+    </div>
 
 </div>
 
 
 
+<!-- =========================
+     ANIMATED BACKGROUND
+========================= -->
+
+<div class="background">
+
+    <div class="grid"></div>
+
+    <div class="glow glow-one"></div>
+
+    <div class="glow glow-two"></div>
+
+    <div class="scanlines"></div>
+
+</div>
+
+
+
+<!-- =========================
+     CUSTOM CURSOR
+========================= -->
+
+<div class="cursor-dot"></div>
+
+<div class="cursor-ring"></div>
+
+
+
+<!-- =========================
+     MUSIC PLAYER
+========================= -->
+
+<div class="music-player">
+
+
+    <div class="music-info">
+
+        <div class="music-disc">
+
+            <img src="images/logo.png" alt="Klypse">
+
+        </div>
+
+
+        <div class="music-text">
+
+            <strong id="songTitle">
+                Klypse Radio
+            </strong>
+
+            <span id="songStatus">
+                Ready
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="music-controls">
+
+        <button id="previousSong" title="Previous">
+            ⏮
+        </button>
+
+        <button id="playPause" title="Play / Pause">
+            ▶
+        </button>
+
+        <button id="nextSong" title="Next">
+            ⏭
+        </button>
+
+        <button id="muteButton" title="Mute">
+            🔊
+        </button>
+
+    </div>
+
+
+
+    <input
+        id="volumeSlider"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.35"
+    >
+
+
+</div>
+
+
+
+<audio id="backgroundMusic"></audio>
+
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <header>
 
+    <div class="logo-area">
 
-<div class="logo-area">
+        <img src="images/logo.png" alt="Klypse">
 
-<img src="images/logo.png">
+        <span>Klypse</span>
 
-<span>Klypse</span>
-
-</div>
-
+    </div>
 
 
-<nav>
+    <nav>
 
-<a href="index.html">Home</a>
+        <a href="index.html" class="active">
+            Home
+        </a>
 
-<a href="features.html">Features</a>
+        <a href="features.html">
+            Features
+        </a>
 
-<a href="updates.html">Updates</a>
+        <a href="updates.html">
+            Updates
+        </a>
 
-<a href="https://discord.gg/SguyC9JuPD" target="_blank">
-Discord
-</a>
+        <a
+            href="https://discord.gg/SguyC9JuPD"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Discord
+        </a>
 
-</nav>
-
+    </nav>
 
 </header>
 
 
 
+<!-- =========================
+     HERO
+========================= -->
+
+<main>
 
 
 <section class="hero">
 
 
-<img class="big-logo" src="images/logo.png">
+    <div class="hero-badge">
+        KLYPSE // 01
+    </div>
 
 
-<h1>KLYPSE</h1>
+    <img
+        class="big-logo"
+        src="images/logo.png"
+        alt="Klypse Logo"
+    >
 
 
-<p>
-The next generation of premium performance software.
-</p>
+    <h1>KLYPSE</h1>
 
 
+    <p class="hero-subtitle">
+
+        A darker way to experience
+        <span>performance.</span>
+
+    </p>
 
 
-<div class="buttons">
+    <div class="buttons">
 
 
-<a class="download" href="#download">
-Download
-</a>
+        <a
+            class="download"
+            href="#download"
+        >
+            Download
+        </a>
 
 
-
-<a class="discord" href="https://discord.gg/SguyC9JuPD" target="_blank">
-
-Discord
-
-</a>
-
-
-</div>
-
-
-</section>
+        <a
+            class="discord"
+            href="https://discord.gg/SguyC9JuPD"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Join Discord
+        </a>
 
 
+    </div>
 
 
+    <div class="scroll-indicator">
 
+        <span></span>
 
+        Scroll to explore
 
-<section id="download">
-
-
-<h2>Download Klypse</h2>
-
-
-<div class="download-box">
-
-
-<h3>
-Latest Version
-</h3>
-
-
-<p>
-Klypse v1.0.0
-</p>
-
-
-<button id="downloadButton">
-
-Download Now
-
-</button>
-
-
-</div>
+    </div>
 
 
 </section>
 
 
 
+<!-- =========================
+     DOWNLOAD
+========================= -->
+
+<section id="download" class="content-section reveal">
 
 
+    <div class="section-label">
+        01 / RELEASE
+    </div>
 
 
-
-<section>
-
-
-<h2>
-Why Klypse?
-</h2>
+    <h2>
+        Get <span>Klypse.</span>
+    </h2>
 
 
+    <p class="section-description">
 
-<div class="cards">
+        Download the latest version and
+        experience the current Klypse release.
 
-
-
-<div class="card">
-
-<h3>⚡ Performance</h3>
-
-<p>
-Built for speed and efficiency.
-</p>
-
-</div>
+    </p>
 
 
+    <div class="download-box">
 
 
-<div class="card">
+        <div>
 
-<h3>◆ Premium Design</h3>
+            <span class="version">
+                CURRENT VERSION
+            </span>
 
-<p>
-A futuristic clean interface.
-</p>
+            <h3>
+                Klypse 1.0.0
+            </h3>
 
-</div>
+            <p>
+                Latest stable release
+            </p>
 
-
-
-
-<div class="card">
-
-<h3>◈ Reliability</h3>
-
-<p>
-Stable and consistent.
-</p>
-
-</div>
+        </div>
 
 
+        <button id="downloadButton">
 
-</div>
+            Download Now
+
+        </button>
+
+
+    </div>
 
 
 </section>
 
 
 
+<!-- =========================
+     WHY KLYPSE
+========================= -->
+
+<section class="content-section reveal">
+
+
+    <div class="section-label">
+        02 / EXPERIENCE
+    </div>
+
+
+    <h2>
+        Built <span>differently.</span>
+    </h2>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="card-number">
+                01
+            </div>
+
+            <div class="card-icon">
+                ◈
+            </div>
+
+            <h3>
+                Performance
+            </h3>
+
+            <p>
+                Designed around speed,
+                efficiency and a lightweight
+                experience.
+            </p>
+
+        </div>
 
 
 
+        <div class="card">
+
+            <div class="card-number">
+                02
+            </div>
+
+            <div class="card-icon">
+                ◇
+            </div>
+
+            <h3>
+                Precision
+            </h3>
+
+            <p>
+                Every part of the interface
+                is designed with purpose.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-number">
+                03
+            </div>
+
+            <div class="card-icon">
+                ◆
+            </div>
+
+            <h3>
+                Identity
+            </h3>
+
+            <p>
+                A distinct visual experience
+                built around Klypse.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     DISCORD
+========================= -->
+
+<section class="discord-section reveal">
+
+
+    <div class="discord-panel">
+
+
+        <div>
+
+            <span class="section-label">
+                03 / COMMUNITY
+            </span>
+
+            <h2>
+                Enter the <span>community.</span>
+            </h2>
+
+            <p>
+                Stay updated, talk with other
+                users and follow the latest
+                Klypse development.
+            </p>
+
+        </div>
+
+
+        <a
+            href="https://discord.gg/SguyC9JuPD"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="discord-large"
+        >
+            Join Discord →
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
+    <img src="images/logo.png" alt="Klypse">
 
-<img src="images/logo.png">
+    <h3>Klypse</h3>
 
-<h3>Klypse</h3>
-
-
-<p>
-© 2026 Klypse
-</p>
-
+    <p>
+        © 2026 Klypse. All rights reserved.
+    </p>
 
 </footer>
 
 
 
-
-
 <script src="script.js"></script>
-
 
 </body>
 
