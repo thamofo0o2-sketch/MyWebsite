@@ -1,28 +1,37 @@
-/* =========================
-   LOADING SCREEN
-========================= */
+/* =========================================================
+   KLYPSE WEBSITE SCRIPT
+   Works on:
+   - index.html
+   - features.html
+   - updates.html
+========================================================= */
 
-window.addEventListener("load", () => {
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+window.addEventListener("load", function () {
 
     const loader = document.getElementById("loader");
 
-    if (loader) {
-
-        setTimeout(() => {
-
-            loader.classList.add("hidden");
-
-        }, 1800);
-
+    if (!loader) {
+        return;
     }
+
+    setTimeout(function () {
+
+        loader.classList.add("hidden");
+
+    }, 1600);
 
 });
 
 
 
-/* =========================
+/* =========================================================
    CUSTOM CURSOR
-========================= */
+========================================================= */
 
 const cursorDot = document.querySelector(".cursor-dot");
 
@@ -36,7 +45,7 @@ let ringX = 0;
 let ringY = 0;
 
 
-document.addEventListener("mousemove", (event) => {
+document.addEventListener("mousemove", function (event) {
 
     mouseX = event.clientX;
     mouseY = event.clientY;
@@ -53,7 +62,7 @@ document.addEventListener("mousemove", (event) => {
 });
 
 
-function animateCursor() {
+function updateCursor() {
 
     ringX += (mouseX - ringX) * 0.15;
 
@@ -69,25 +78,31 @@ function animateCursor() {
     }
 
 
-    requestAnimationFrame(animateCursor);
+    requestAnimationFrame(updateCursor);
 
 }
 
 
-animateCursor();
+if (cursorRing) {
+
+    updateCursor();
+
+}
 
 
 
-/* Cursor hover */
+/* =========================================================
+   CURSOR HOVER EFFECT
+========================================================= */
 
 const hoverElements = document.querySelectorAll(
     "a, button, input, .card, .music-player"
 );
 
 
-hoverElements.forEach((element) => {
+hoverElements.forEach(function (element) {
 
-    element.addEventListener("mouseenter", () => {
+    element.addEventListener("mouseenter", function () {
 
         if (cursorRing) {
 
@@ -98,7 +113,7 @@ hoverElements.forEach((element) => {
     });
 
 
-    element.addEventListener("mouseleave", () => {
+    element.addEventListener("mouseleave", function () {
 
         if (cursorRing) {
 
@@ -112,56 +127,71 @@ hoverElements.forEach((element) => {
 
 
 
-/* =========================
-   SCROLL REVEALS
-========================= */
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
 
 const revealElements = document.querySelectorAll(".reveal");
 
 
-const revealObserver = new IntersectionObserver(
-    (entries) => {
+if ("IntersectionObserver" in window) {
 
-        entries.forEach((entry) => {
+    const revealObserver = new IntersectionObserver(
 
-            if (entry.isIntersecting) {
+        function (entries) {
 
-                entry.target.classList.add("visible");
+            entries.forEach(function (entry) {
 
-            }
+                if (entry.isIntersecting) {
 
-        });
+                    entry.target.classList.add("visible");
 
-    },
-    {
-        threshold: 0.15
-    }
-);
+                    revealObserver.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
 
 
-revealElements.forEach((element) => {
+    revealElements.forEach(function (element) {
 
-    revealObserver.observe(element);
+        revealObserver.observe(element);
 
-});
+    });
+
+} else {
+
+    revealElements.forEach(function (element) {
+
+        element.classList.add("visible");
+
+    });
+
+}
 
 
 
-/* =========================
-   MUSIC PLAYER
-========================= */
+/* =========================================================
+   KLYPSE RADIO
+========================================================= */
 
 
 /*
-    ADD YOUR SONGS HERE.
-
-    Put the actual MP3 files inside:
+    PUT YOUR MUSIC HERE:
 
     music/song1.mp3
     music/song2.mp3
     music/song3.mp3
 
-    Then change the names below if needed.
+    Add more objects if you want more songs.
 */
 
 const songs = [
@@ -186,11 +216,11 @@ const songs = [
 
 const audio = document.getElementById("backgroundMusic");
 
-const playPause = document.getElementById("playPause");
+const playPauseButton = document.getElementById("playPause");
 
-const previousSong = document.getElementById("previousSong");
+const previousButton = document.getElementById("previousSong");
 
-const nextSong = document.getElementById("nextSong");
+const nextButton = document.getElementById("nextSong");
 
 const muteButton = document.getElementById("muteButton");
 
@@ -204,7 +234,10 @@ const songStatus = document.getElementById("songStatus");
 let currentSong = 0;
 
 
-/* Default volume */
+
+/* =========================================================
+   MUSIC SETUP
+========================================================= */
 
 if (audio) {
 
@@ -213,19 +246,43 @@ if (audio) {
 }
 
 
+if (volumeSlider) {
 
-/* Load song */
+    volumeSlider.value = "0.35";
+
+}
+
+
+
+/* =========================================================
+   LOAD SONG
+========================================================= */
 
 function loadSong(index) {
 
-    if (!audio || !songs.length) return;
+    if (!audio || songs.length === 0) {
+        return;
+    }
+
+
+    if (index < 0) {
+
+        index = songs.length - 1;
+
+    }
+
+
+    if (index >= songs.length) {
+
+        index = 0;
+
+    }
 
 
     currentSong = index;
 
 
     audio.src = songs[currentSong].file;
-
 
     audio.load();
 
@@ -247,62 +304,74 @@ function loadSong(index) {
 }
 
 
-/* Play */
+
+/* =========================================================
+   PLAY
+========================================================= */
 
 function playSong() {
 
-    if (!audio) return;
+    if (!audio) {
+        return;
+    }
 
 
-    audio.play()
-        .then(() => {
-
-            if (playPause) {
-
-                playPause.textContent = "Ⅱ";
-
-            }
+    const playPromise = audio.play();
 
 
-            if (songStatus) {
+    if (playPromise !== undefined) {
 
-                songStatus.textContent = "Playing";
+        playPromise
+            .then(function () {
 
-            }
+                if (playPauseButton) {
 
-        })
-        .catch(() => {
+                    playPauseButton.textContent = "Ⅱ";
 
-            /*
-                Browsers can block autoplay.
-                The user can press Play.
-            */
+                }
 
-            if (songStatus) {
 
-                songStatus.textContent =
-                    "Press play to start";
+                if (songStatus) {
 
-            }
+                    songStatus.textContent = "Playing";
 
-        });
+                }
+
+            })
+            .catch(function () {
+
+                if (songStatus) {
+
+                    songStatus.textContent =
+                        "Press play to start";
+
+                }
+
+            });
+
+    }
 
 }
 
 
-/* Pause */
+
+/* =========================================================
+   PAUSE
+========================================================= */
 
 function pauseSong() {
 
-    if (!audio) return;
+    if (!audio) {
+        return;
+    }
 
 
     audio.pause();
 
 
-    if (playPause) {
+    if (playPauseButton) {
 
-        playPause.textContent = "▶";
+        playPauseButton.textContent = "▶";
 
     }
 
@@ -316,149 +385,226 @@ function pauseSong() {
 }
 
 
-/* Play / Pause */
 
-if (playPause) {
+/* =========================================================
+   PLAY / PAUSE BUTTON
+========================================================= */
 
-    playPause.addEventListener("click", () => {
+if (playPauseButton) {
 
-        if (audio.paused) {
+    playPauseButton.addEventListener(
+        "click",
+        function () {
+
+            if (!audio) {
+                return;
+            }
+
+
+            if (audio.paused) {
+
+                playSong();
+
+            } else {
+
+                pauseSong();
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   NEXT SONG
+========================================================= */
+
+if (nextButton) {
+
+    nextButton.addEventListener(
+        "click",
+        function () {
+
+            currentSong++;
+
+            if (currentSong >= songs.length) {
+
+                currentSong = 0;
+
+            }
+
+
+            loadSong(currentSong);
 
             playSong();
 
-        } else {
-
-            pauseSong();
-
         }
-
-    });
+    );
 
 }
 
 
-/* Next */
 
-if (nextSong) {
+/* =========================================================
+   PREVIOUS SONG
+========================================================= */
 
-    nextSong.addEventListener("click", () => {
+if (previousButton) {
 
-        currentSong++;
+    previousButton.addEventListener(
+        "click",
+        function () {
 
-        if (currentSong >= songs.length) {
+            currentSong--;
 
-            currentSong = 0;
+            if (currentSong < 0) {
+
+                currentSong = songs.length - 1;
+
+            }
+
+
+            loadSong(currentSong);
+
+            playSong();
 
         }
-
-        loadSong(currentSong);
-
-        playSong();
-
-    });
+    );
 
 }
 
 
-/* Previous */
 
-if (previousSong) {
-
-    previousSong.addEventListener("click", () => {
-
-        currentSong--;
-
-        if (currentSong < 0) {
-
-            currentSong = songs.length - 1;
-
-        }
-
-        loadSong(currentSong);
-
-        playSong();
-
-    });
-
-}
-
-
-/* Automatic next song */
+/* =========================================================
+   AUTOMATIC NEXT SONG
+========================================================= */
 
 if (audio) {
 
-    audio.addEventListener("ended", () => {
+    audio.addEventListener(
+        "ended",
+        function () {
 
-        currentSong++;
+            currentSong++;
 
-        if (currentSong >= songs.length) {
+            if (currentSong >= songs.length) {
 
-            currentSong = 0;
+                currentSong = 0;
+
+            }
+
+
+            loadSong(currentSong);
+
+            playSong();
 
         }
-
-        loadSong(currentSong);
-
-        playSong();
-
-    });
+    );
 
 }
 
 
-/* Mute */
+
+/* =========================================================
+   MUTE
+========================================================= */
 
 if (muteButton) {
 
-    muteButton.addEventListener("click", () => {
+    muteButton.addEventListener(
+        "click",
+        function () {
 
-        audio.muted = !audio.muted;
+            if (!audio) {
+                return;
+            }
 
 
-        if (audio.muted) {
+            audio.muted = !audio.muted;
 
-            muteButton.textContent = "🔇";
 
-        } else {
+            if (audio.muted) {
 
-            muteButton.textContent = "🔊";
+                muteButton.textContent = "🔇";
+
+                if (songStatus) {
+                    songStatus.textContent = "Muted";
+                }
+
+            } else {
+
+                muteButton.textContent = "🔊";
+
+                if (songStatus) {
+                    songStatus.textContent =
+                        audio.paused ? "Paused" : "Playing";
+                }
+
+            }
 
         }
-
-    });
+    );
 
 }
 
 
-/* Volume */
+
+/* =========================================================
+   VOLUME
+========================================================= */
 
 if (volumeSlider) {
 
-    volumeSlider.addEventListener("input", () => {
+    volumeSlider.addEventListener(
+        "input",
+        function () {
 
-        audio.volume =
-            Number(volumeSlider.value);
+            if (!audio) {
+                return;
+            }
 
 
-        if (audio.volume === 0) {
+            const volume =
+                Number(volumeSlider.value);
 
-            audio.muted = true;
 
-            muteButton.textContent = "🔇";
+            audio.volume = volume;
 
-        } else {
 
-            audio.muted = false;
+            if (volume <= 0) {
 
-            muteButton.textContent = "🔊";
+                audio.muted = true;
+
+                if (muteButton) {
+                    muteButton.textContent = "🔇";
+                }
+
+            } else {
+
+                audio.muted = false;
+
+                if (muteButton) {
+                    muteButton.textContent = "🔊";
+                }
+
+            }
 
         }
-
-    });
+    );
 
 }
 
 
-/* Load first song */
 
-loadSong(0);
+/* =========================================================
+   START FIRST SONG
+========================================================= */
+
+if (audio && songs.length > 0) {
+
+    loadSong(0);
+
+}
