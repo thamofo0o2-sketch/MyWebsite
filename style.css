@@ -1,106 +1,84 @@
+/* ==============================
+   RESET
+============================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
+    min-height: 100vh;
     background: #030303;
-    color: #fff;
+    color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
-    cursor: none;
 }
 
 
-/* =========================
+/* ==============================
    BACKGROUND
-========================= */
+============================== */
 
 .background {
     position: fixed;
     inset: 0;
-    pointer-events: none;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    z-index: -5;
+    pointer-events: none;
+    z-index: -10;
 }
-
 
 .grid {
     position: absolute;
-    inset: -50%;
+    width: 200%;
+    height: 200%;
+    left: -50%;
+    top: -20%;
     background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
     background-size: 60px 60px;
     transform: perspective(600px) rotateX(55deg);
     animation: gridMove 18s linear infinite;
 }
 
-
 @keyframes gridMove {
-
     from {
-        transform:
-            perspective(600px)
-            rotateX(55deg)
-            translateY(0);
+        transform: perspective(600px) rotateX(55deg) translateY(0);
     }
 
     to {
-        transform:
-            perspective(600px)
-            rotateX(55deg)
-            translateY(60px);
+        transform: perspective(600px) rotateX(55deg) translateY(60px);
     }
-
 }
-
 
 .glow {
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: 450px;
+    height: 450px;
     border-radius: 50%;
     filter: blur(150px);
-    opacity: .12;
-    animation: glowMove 8s ease-in-out infinite alternate;
+    opacity: 0.08;
 }
-
 
 .glow-one {
-    background: #fff;
-    top: -250px;
+    top: -200px;
     left: 20%;
+    background: #ffffff;
 }
-
 
 .glow-two {
-    background: #777;
-    right: -250px;
-    bottom: 10%;
-    animation-delay: 2s;
+    right: -200px;
+    bottom: 5%;
+    background: #777777;
 }
-
-
-@keyframes glowMove {
-
-    from {
-        transform: translate(0, 0);
-    }
-
-    to {
-        transform: translate(120px, 80px);
-    }
-
-}
-
 
 .scanlines {
     position: absolute;
@@ -109,185 +87,194 @@ body {
         to bottom,
         transparent 0px,
         transparent 3px,
-        rgba(255,255,255,.012) 4px
+        rgba(255,255,255,0.01) 4px
     );
 }
 
 
-/* =========================
+/* ==============================
    LOADING SCREEN
-========================= */
+============================== */
 
 #loader {
     position: fixed;
     inset: 0;
+    width: 100%;
+    height: 100%;
     background: #030303;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 99999;
-    transition: opacity .8s ease, visibility .8s ease;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
 }
-
 
 #loader.hidden {
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
 }
-
 
 .loader-logo-wrap {
-    animation: loaderPulse 2s ease-in-out infinite;
-}
-
-
-.loader-logo-wrap img {
     width: 120px;
     height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: loaderPulse 2s infinite;
+}
+
+.loader-logo-wrap img {
+    display: block;
+    width: 120px;
+    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
     object-fit: contain;
 }
 
-
 #loader h1 {
     margin-top: 25px;
-    letter-spacing: 16px;
-    color: #ddd;
+    font-size: 32px;
+    letter-spacing: 12px;
+    color: #dddddd;
 }
-
 
 #loader p {
-    color: #555;
-    font-size: 10px;
-    letter-spacing: 4px;
     margin-top: 12px;
+    color: #555555;
+    font-size: 10px;
+    letter-spacing: 3px;
 }
-
 
 .loading-bar {
     width: 220px;
-    height: 2px;
-    background: #222;
-    margin-top: 30px;
+    height: 3px;
+    margin-top: 28px;
+    background: #1b1b1b;
     overflow: hidden;
+    border-radius: 10px;
 }
-
 
 .loading-progress {
-    height: 100%;
     width: 0;
-    background: #fff;
-    animation: loading 1.7s ease forwards;
+    height: 100%;
+    background: #ffffff;
+    animation: loadingProgress 1.6s ease forwards;
 }
 
-
-@keyframes loading {
+@keyframes loadingProgress {
+    from {
+        width: 0;
+    }
 
     to {
         width: 100%;
     }
-
 }
-
 
 @keyframes loaderPulse {
-
     50% {
         transform: scale(1.08);
-        filter: drop-shadow(0 0 30px rgba(255,255,255,.3));
+        filter: drop-shadow(0 0 25px rgba(255,255,255,0.25));
     }
-
 }
 
 
-/* =========================
-   CURSOR
-========================= */
+/* ==============================
+   CUSTOM CURSOR
+============================== */
 
 .cursor-dot {
     position: fixed;
     width: 6px;
     height: 6px;
-    background: white;
+    background: #ffffff;
     border-radius: 50%;
     pointer-events: none;
     z-index: 100000;
     transform: translate(-50%, -50%);
 }
 
-
 .cursor-ring {
     position: fixed;
-    width: 32px;
-    height: 32px;
-    border: 1px solid rgba(255,255,255,.6);
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255,255,255,0.55);
     border-radius: 50%;
     pointer-events: none;
     z-index: 99999;
     transform: translate(-50%, -50%);
     transition:
-        width .2s ease,
-        height .2s ease,
-        border-color .2s ease;
+        width 0.2s ease,
+        height 0.2s ease,
+        border-color 0.2s ease;
 }
-
 
 .cursor-ring.hover {
-    width: 50px;
-    height: 50px;
-    border-color: white;
+    width: 48px;
+    height: 48px;
+    border-color: #ffffff;
 }
 
 
-/* =========================
+/* ==============================
    NAVBAR
-========================= */
+============================== */
 
 header {
+    position: relative;
+    z-index: 100;
     width: 100%;
     height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(3,3,3,0.85);
     border-bottom: 1px solid #151515;
-    background: rgba(3,3,3,.7);
     backdrop-filter: blur(15px);
-    position: relative;
-    z-index: 50;
 }
-
 
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
+    color: #ffffff;
     font-size: 22px;
     font-weight: bold;
 }
 
-
 .logo-area img {
+    display: block;
     width: 42px;
     height: 42px;
+    max-width: 42px;
+    max-height: 42px;
     object-fit: contain;
 }
 
-
 nav {
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 28px;
 }
-
 
 nav a {
-    color: #666;
+    position: relative;
+    color: #666666;
     text-decoration: none;
     font-size: 13px;
-    transition: color .3s ease;
-    position: relative;
+    transition: color 0.3s ease;
 }
 
+nav a:hover,
+nav a.active {
+    color: #ffffff;
+}
 
 nav a::after {
     content: "";
@@ -296,16 +283,9 @@ nav a::after {
     bottom: -8px;
     width: 0;
     height: 1px;
-    background: white;
-    transition: width .3s ease;
+    background: #ffffff;
+    transition: width 0.3s ease;
 }
-
-
-nav a:hover,
-nav a.active {
-    color: white;
-}
-
 
 nav a:hover::after,
 nav a.active::after {
@@ -313,388 +293,344 @@ nav a.active::after {
 }
 
 
-/* =========================
+/* ==============================
    HERO
-========================= */
+============================== */
 
 .hero {
-    min-height: 90vh;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 80px);
+    padding: 100px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 100px 20px;
 }
-
 
 .hero-badge {
-    border: 1px solid #292929;
-    color: #666;
+    margin-bottom: 30px;
     padding: 8px 15px;
-    border-radius: 100px;
+    border: 1px solid #292929;
+    border-radius: 50px;
+    color: #666666;
     font-size: 10px;
     letter-spacing: 3px;
-    margin-bottom: 35px;
-    animation: fadeUp .8s ease both;
 }
-
 
 .big-logo {
+    display: block;
     width: 145px;
     height: 145px;
+    max-width: 145px;
+    max-height: 145px;
     object-fit: contain;
-    filter: drop-shadow(0 0 35px rgba(255,255,255,.2));
-    animation: heroLogo 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(255,255,255,0.2));
+    animation: heroFloat 5s ease-in-out infinite;
 }
 
-
-@keyframes heroLogo {
-
+@keyframes heroFloat {
     50% {
-        transform: translateY(-12px) rotate(2deg);
-        filter: drop-shadow(0 0 50px rgba(255,255,255,.3));
+        transform: translateY(-10px);
+        filter: drop-shadow(0 0 45px rgba(255,255,255,0.3));
     }
-
 }
-
 
 .hero h1 {
     margin-top: 30px;
-    font-size: clamp(55px, 10vw, 110px);
-    letter-spacing: clamp(10px, 3vw, 28px);
-    color: #ddd;
-    animation: fadeUp .9s .15s ease both;
+    font-size: clamp(55px, 10vw, 105px);
+    line-height: 1;
+    letter-spacing: clamp(8px, 2.5vw, 25px);
+    color: #dddddd;
 }
-
 
 .hero-subtitle {
-    margin-top: 20px;
-    color: #666;
+    max-width: 650px;
+    margin-top: 22px;
+    color: #666666;
     font-size: 18px;
-    animation: fadeUp .9s .3s ease both;
+    line-height: 1.6;
 }
-
 
 .hero-subtitle span {
-    color: #ddd;
+    color: #dddddd;
 }
-
 
 .buttons {
     margin-top: 40px;
-    animation: fadeUp .9s .45s ease both;
 }
-
 
 .buttons a {
     display: inline-block;
+    margin: 6px;
     padding: 14px 32px;
-    margin: 7px;
     border-radius: 9px;
     text-decoration: none;
     font-size: 13px;
-    transition: transform .3s ease, background .3s ease, border-color .3s ease;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
 }
-
 
 .buttons a:hover {
     transform: translateY(-5px);
 }
 
-
 .download {
-    background: white;
-    color: black;
+    background: #ffffff;
+    color: #000000;
 }
-
 
 .download:hover {
-    background: #ccc;
+    background: #cccccc;
 }
-
 
 .discord {
-    color: white;
-    border: 1px solid #333;
+    color: #ffffff;
+    border: 1px solid #333333;
 }
-
 
 .discord:hover {
-    border-color: #777;
+    border-color: #777777;
 }
 
-
 .scroll-indicator {
-    margin-top: 80px;
-    color: #444;
+    margin-top: 65px;
+    color: #444444;
     font-size: 10px;
     letter-spacing: 2px;
 }
 
-
 .scroll-indicator span {
     display: block;
     width: 1px;
-    height: 35px;
-    background: #555;
+    height: 32px;
     margin: 0 auto 10px;
-    animation: scrollLine 1.5s infinite;
+    background: #555555;
+    animation: scrollIndicator 1.5s infinite;
 }
 
-
-@keyframes scrollLine {
-
+@keyframes scrollIndicator {
     50% {
-        transform: scaleY(.3);
-        opacity: .3;
+        transform: scaleY(0.3);
+        opacity: 0.3;
     }
-
 }
 
 
-/* =========================
-   SECTIONS
-========================= */
+/* ==============================
+   CONTENT SECTIONS
+============================== */
 
 .content-section {
     width: 100%;
     max-width: 1200px;
-    margin: auto;
-    padding: 120px 30px;
+    margin: 0 auto;
+    padding: 110px 30px;
     text-align: center;
 }
 
-
 .section-label {
-    color: #555;
+    margin-bottom: 20px;
+    color: #555555;
     font-size: 10px;
     letter-spacing: 4px;
-    margin-bottom: 20px;
 }
 
-
-.content-section h2,
-.discord-panel h2 {
+.content-section h2 {
+    margin-bottom: 20px;
     font-size: clamp(35px, 5vw, 60px);
-    margin-bottom: 20px;
 }
 
-
-.content-section h2 span,
-.discord-panel h2 span {
-    color: #666;
+.content-section h2 span {
+    color: #666666;
 }
-
 
 .section-description {
     max-width: 550px;
     margin: 0 auto 50px;
-    color: #666;
+    color: #666666;
     line-height: 1.8;
 }
 
 
-/* =========================
-   DOWNLOAD
-========================= */
+/* ==============================
+   DOWNLOAD BOX
+============================== */
 
 .download-box {
+    width: 100%;
     max-width: 700px;
-    margin: auto;
+    margin: 0 auto;
     padding: 35px;
-    border: 1px solid #222;
-    background: rgba(10,10,10,.8);
-    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 25px;
     text-align: left;
-    transition: transform .3s ease, border-color .3s ease;
+    background: rgba(10,10,10,0.85);
+    border: 1px solid #222222;
+    border-radius: 16px;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
 }
-
 
 .download-box:hover {
     transform: translateY(-6px);
-    border-color: #555;
+    border-color: #555555;
 }
 
-
 .version {
-    color: #555;
+    color: #555555;
     font-size: 9px;
     letter-spacing: 3px;
 }
-
 
 .download-box h3 {
     margin-top: 8px;
     font-size: 22px;
 }
 
-
 .download-box p {
-    color: #666;
     margin-top: 6px;
+    color: #666666;
 }
-
 
 #downloadButton {
-    border: 0;
-    background: white;
-    color: black;
     padding: 14px 25px;
+    border: 0;
     border-radius: 8px;
+    background: #ffffff;
+    color: #000000;
     font-weight: bold;
-    cursor: none;
-    transition: transform .3s ease, background .3s ease;
+    cursor: pointer;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
 }
-
 
 #downloadButton:hover {
     transform: scale(1.05);
-    background: #ccc;
+    background: #cccccc;
 }
 
 
-/* =========================
+/* ==============================
    CARDS
-========================= */
+============================== */
 
 .cards {
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 18px;
 }
 
-
 .card {
     position: relative;
-    padding: 35px;
     min-height: 260px;
+    padding: 35px;
     text-align: left;
-    background: rgba(9,9,9,.8);
+    background: rgba(9,9,9,0.85);
     border: 1px solid #1b1b1b;
     border-radius: 16px;
     overflow: hidden;
     transition:
-        transform .4s ease,
-        border-color .4s ease,
-        background .4s ease;
+        transform 0.4s ease,
+        border-color 0.4s ease;
 }
-
-
-.card::before {
-    content: "";
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    background: white;
-    opacity: 0;
-    filter: blur(80px);
-    right: -70px;
-    top: -70px;
-    transition: opacity .4s ease;
-}
-
 
 .card:hover {
     transform: translateY(-10px);
-    border-color: #444;
-    background: #0d0d0d;
+    border-color: #444444;
 }
-
-
-.card:hover::before {
-    opacity: .08;
-}
-
 
 .card-number {
-    color: #333;
+    color: #333333;
     font-size: 11px;
     letter-spacing: 2px;
 }
 
-
 .card-icon {
-    font-size: 25px;
     margin-top: 40px;
-    color: #aaa;
+    color: #aaaaaa;
+    font-size: 25px;
 }
-
 
 .card h3 {
     margin-top: 20px;
     font-size: 20px;
 }
 
-
 .card p {
-    color: #666;
     margin-top: 12px;
+    color: #666666;
     line-height: 1.7;
 }
 
 
-/* =========================
-   DISCORD
-========================= */
+/* ==============================
+   DISCORD SECTION
+============================== */
 
 .discord-section {
+    width: 100%;
     padding: 80px 30px 120px;
 }
 
-
 .discord-panel {
+    width: 100%;
     max-width: 1100px;
-    margin: auto;
+    margin: 0 auto;
     padding: 55px;
-    border: 1px solid #222;
-    border-radius: 20px;
-    background:
-        linear-gradient(
-            120deg,
-            rgba(255,255,255,.04),
-            transparent
-        ),
-        #080808;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 40px;
+    background: #080808;
+    border: 1px solid #222222;
+    border-radius: 20px;
 }
 
+.discord-panel h2 {
+    margin-bottom: 15px;
+    font-size: clamp(35px, 5vw, 60px);
+}
+
+.discord-panel h2 span {
+    color: #666666;
+}
 
 .discord-panel p {
-    color: #666;
     max-width: 500px;
+    color: #666666;
     line-height: 1.7;
 }
 
-
 .discord-large {
     display: inline-block;
-    white-space: nowrap;
     padding: 15px 25px;
-    border: 1px solid #444;
+    border: 1px solid #444444;
     border-radius: 9px;
-    color: white;
+    color: #ffffff;
     text-decoration: none;
-    transition: .3s;
+    white-space: nowrap;
+    transition: 0.3s ease;
 }
 
-
 .discord-large:hover {
-    background: white;
-    color: black;
+    background: #ffffff;
+    color: #000000;
     transform: translateY(-4px);
 }
 
 
-/* =========================
+/* ==============================
    MUSIC PLAYER
-========================= */
+============================== */
 
 .music-player {
     position: fixed;
@@ -703,13 +639,12 @@ nav a.active::after {
     z-index: 500;
     width: 280px;
     padding: 12px;
-    background: rgba(8,8,8,.9);
+    background: rgba(8,8,8,0.94);
     border: 1px solid #252525;
     border-radius: 12px;
     backdrop-filter: blur(15px);
-    box-shadow: 0 15px 50px rgba(0,0,0,.4);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.4);
 }
-
 
 .music-info {
     display: flex;
@@ -717,114 +652,113 @@ nav a.active::after {
     gap: 10px;
 }
 
-
 .music-disc {
+    flex-shrink: 0;
     width: 36px;
     height: 36px;
     border-radius: 50%;
     overflow: hidden;
-    border: 1px solid #333;
+    border: 1px solid #333333;
 }
-
 
 .music-disc img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    display: block;
+    width: 36px;
+    height: 36px;
+    max-width: 36px;
+    max-height: 36px;
+    object-fit: contain;
 }
-
 
 .music-text {
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    min-width: 0;
 }
-
 
 .music-text strong {
+    overflow: hidden;
+    color: #dddddd;
     font-size: 11px;
-    color: #ddd;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-
 
 .music-text span {
-    color: #555;
-    font-size: 9px;
     margin-top: 3px;
+    color: #555555;
+    font-size: 9px;
 }
-
 
 .music-controls {
     display: flex;
-    align-items: center;
     gap: 5px;
     margin-top: 10px;
 }
-
 
 .music-controls button {
     width: 31px;
     height: 28px;
     border: 1px solid #252525;
     border-radius: 6px;
-    background: #111;
-    color: #aaa;
-    cursor: none;
-    transition: .2s;
+    background: #111111;
+    color: #aaaaaa;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
-
 
 .music-controls button:hover {
-    background: #fff;
-    color: #000;
+    background: #ffffff;
+    color: #000000;
 }
-
 
 #volumeSlider {
+    display: block;
     width: 100%;
     margin-top: 9px;
-    accent-color: white;
+    accent-color: #ffffff;
 }
 
 
-/* =========================
+/* ==============================
    FOOTER
-========================= */
+============================== */
 
 footer {
+    width: 100%;
+    padding: 60px 20px;
     text-align: center;
     border-top: 1px solid #151515;
-    padding: 60px 20px;
-    color: #555;
+    color: #555555;
 }
-
 
 footer img {
+    display: block;
     width: 55px;
     height: 55px;
+    max-width: 55px;
+    max-height: 55px;
+    margin: 0 auto 15px;
     object-fit: contain;
-    margin-bottom: 15px;
 }
-
 
 footer h3 {
-    color: #aaa;
     margin-bottom: 8px;
+    color: #aaaaaa;
 }
 
 
-/* =========================
+/* ==============================
    REVEAL ANIMATION
-========================= */
+============================== */
 
 .reveal {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(35px);
     transition:
-        opacity .8s ease,
-        transform .8s ease;
+        opacity 0.8s ease,
+        transform 0.8s ease;
 }
-
 
 .reveal.visible {
     opacity: 1;
@@ -832,24 +766,9 @@ footer h3 {
 }
 
 
-@keyframes fadeUp {
-
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-/* =========================
+/* ==============================
    MOBILE
-========================= */
+============================== */
 
 @media (max-width: 800px) {
 
@@ -857,27 +776,28 @@ footer h3 {
         cursor: auto;
     }
 
-
     .cursor-dot,
     .cursor-ring {
         display: none;
     }
 
-
     header {
-        padding: 0 20px;
+        height: auto;
+        min-height: 80px;
+        padding: 18px 20px;
+        flex-direction: column;
+        gap: 15px;
     }
-
 
     nav {
-        gap: 12px;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
-
 
     nav a {
-        font-size: 10px;
+        font-size: 11px;
     }
-
 
     .music-player {
         top: auto;
@@ -887,23 +807,30 @@ footer h3 {
         width: auto;
     }
 
-
-    .hero h1 {
-        letter-spacing: 10px;
+    .hero {
+        min-height: 80vh;
+        padding: 80px 20px;
     }
 
+    .hero h1 {
+        letter-spacing: 8px;
+    }
+
+    .big-logo {
+        width: 110px;
+        height: 110px;
+        max-width: 110px;
+        max-height: 110px;
+    }
 
     .cards {
         grid-template-columns: 1fr;
     }
 
-
     .download-box {
         flex-direction: column;
         align-items: flex-start;
-        gap: 25px;
     }
-
 
     .discord-panel {
         flex-direction: column;
