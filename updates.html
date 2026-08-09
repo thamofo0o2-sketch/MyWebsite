@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>Klypse Updates</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Klypse — Updates</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" href="images/logo.png">
 
 </head>
 
@@ -13,85 +19,442 @@
 <body>
 
 
-<header>
+<!-- =========================
+     LOADING SCREEN
+========================= -->
 
-<div class="logo-area">
+<div id="loader">
 
-<img src="images/logo.png">
+    <div class="loader-logo-wrap">
 
-<span>Klypse</span>
+        <img src="images/logo.png" alt="Klypse">
+
+    </div>
+
+    <h1>KLYPSE</h1>
+
+    <p>CHECKING UPDATES</p>
+
+    <div class="loading-bar">
+
+        <div class="loading-progress"></div>
+
+    </div>
 
 </div>
 
 
-<nav>
 
-<a href="index.html">Home</a>
+<!-- =========================
+     ANIMATED BACKGROUND
+========================= -->
 
-<a href="features.html">Features</a>
+<div class="background">
 
-<a href="updates.html">Updates</a>
+    <div class="grid"></div>
 
-<a href="download.html">Download</a>
+    <div class="glow glow-one"></div>
 
-</nav>
+    <div class="glow glow-two"></div>
+
+    <div class="scanlines"></div>
+
+</div>
+
+
+
+<!-- =========================
+     CUSTOM CURSOR
+========================= -->
+
+<div class="cursor-dot"></div>
+
+<div class="cursor-ring"></div>
+
+
+
+<!-- =========================
+     MUSIC PLAYER
+========================= -->
+
+<div class="music-player">
+
+    <div class="music-info">
+
+        <div class="music-disc">
+
+            <img src="images/logo.png" alt="Klypse">
+
+        </div>
+
+        <div class="music-text">
+
+            <strong id="songTitle">
+                Klypse Radio
+            </strong>
+
+            <span id="songStatus">
+                Ready
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="music-controls">
+
+        <button id="previousSong" title="Previous">
+            ⏮
+        </button>
+
+        <button id="playPause" title="Play / Pause">
+            ▶
+        </button>
+
+        <button id="nextSong" title="Next">
+            ⏭
+        </button>
+
+        <button id="muteButton" title="Mute">
+            🔊
+        </button>
+
+    </div>
+
+
+    <input
+        id="volumeSlider"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.35"
+    >
+
+</div>
+
+
+<audio id="backgroundMusic"></audio>
+
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header>
+
+    <div class="logo-area">
+
+        <img src="images/logo.png" alt="Klypse">
+
+        <span>Klypse</span>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="features.html">
+            Features
+        </a>
+
+        <a href="updates.html" class="active">
+            Updates
+        </a>
+
+        <a
+            href="https://discord.gg/SguyC9JuPD"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Discord
+        </a>
+
+    </nav>
 
 </header>
 
 
 
+<!-- =========================
+     UPDATES HERO
+========================= -->
+
+<main>
+
+
 <section class="hero">
 
-<h1>UPDATES</h1>
+    <div class="hero-badge">
+        KLYPSE // CHANGELOG
+    </div>
 
-<p>
-Latest Klypse changes.
-</p>
+
+    <img
+        class="big-logo"
+        src="images/logo.png"
+        alt="Klypse Logo"
+    >
+
+
+    <h1>
+        UPDATES
+    </h1>
+
+
+    <p class="hero-subtitle">
+
+        Follow the evolution of
+        <span>Klypse.</span>
+
+    </p>
+
+
+    <div class="scroll-indicator">
+
+        <span></span>
+
+        View changelog
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     VERSION 1.0
+========================= -->
+
+<section class="content-section reveal">
+
+    <div class="section-label">
+        LATEST RELEASE
+    </div>
+
+
+    <h2>
+        Version <span>1.0.0</span>
+    </h2>
+
+
+    <p class="section-description">
+
+        The first major Klypse release.
+        This is where the experience begins.
+
+    </p>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="card-number">
+                01 / NEW
+            </div>
+
+            <div class="card-icon">
+                +
+            </div>
+
+            <h3>
+                New Interface
+            </h3>
+
+            <p>
+                Introduced the new Klypse
+                interface and visual identity.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-number">
+                02 / NEW
+            </div>
+
+            <div class="card-icon">
+                ◈
+            </div>
+
+            <h3>
+                Performance
+            </h3>
+
+            <p>
+                Added the initial performance
+                focused features.
+            </p>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-number">
+                03 / NEW
+            </div>
+
+            <div class="card-icon">
+                ◇
+            </div>
+
+            <h3>
+                Klypse Radio
+            </h3>
+
+            <p>
+                Added background music with
+                playback, volume and mute
+                controls.
+            </p>
+
+        </div>
+
+
+    </div>
 
 </section>
 
 
 
+<!-- =========================
+     UPCOMING
+========================= -->
 
-<section>
+<section class="content-section reveal">
 
-
-<div class="update-box">
-
-
-<h2>
-Version 1.0.0
-</h2>
-
-
-<p>
-✓ New interface
-</p>
+    <div class="section-label">
+        NEXT
+    </div>
 
 
-<p>
-✓ Added animations
-</p>
+    <h2>
+        What's <span>next?</span>
+    </h2>
 
 
-<p>
-✓ Improved stability
-</p>
+    <p class="section-description">
+
+        More features are currently being
+        planned and developed.
+
+    </p>
 
 
-<p>
-✓ Performance improvements
-</p>
+    <div class="download-box">
+
+        <div>
+
+            <span class="version">
+                STATUS
+            </span>
+
+            <h3>
+                Development
+            </h3>
+
+            <p>
+                More information will be
+                announced soon.
+            </p>
+
+        </div>
 
 
-</div>
+        <a
+            href="https://discord.gg/SguyC9JuPD"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="discord-large"
+        >
+            Follow Updates →
+        </a>
 
+    </div>
 
 </section>
+
+
+
+<!-- =========================
+     COMMUNITY
+========================= -->
+
+<section class="discord-section reveal">
+
+    <div class="discord-panel">
+
+        <div>
+
+            <span class="section-label">
+                COMMUNITY
+            </span>
+
+            <h2>
+                Don't miss <span>anything.</span>
+            </h2>
+
+            <p>
+                Join the Klypse community for
+                announcements, releases and
+                development news.
+            </p>
+
+        </div>
+
+
+        <a
+            href="https://discord.gg/SguyC9JuPD"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="discord-large"
+        >
+            Join Discord →
+        </a>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <img src="images/logo.png" alt="Klypse">
+
+    <h3>
+        Klypse
+    </h3>
+
+    <p>
+        © 2026 Klypse. All rights reserved.
+    </p>
+
+</footer>
+
 
 
 <script src="script.js"></script>
-
 
 </body>
 
